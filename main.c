@@ -144,6 +144,11 @@ int main(void){
     // Find Length Of Daisy Chain
     num_brds = find_num_brds();
 
+    if(num_brds == 0){
+        // Unhandled Error
+        while(1);
+    }
+
 	// VPRG Output
 	led_vprg_init();
 	// DCPRG Output and Select DC Internal Registers	
