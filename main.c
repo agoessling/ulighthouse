@@ -62,6 +62,7 @@
 #define PC_CMD_SEND_DATA	0x07
 #define PC_CMD_LAT_DATA		0x08
 #define PC_CMD_SET_DC		0x09
+#define PC_CMD_NUM_BRDS     0x0A
 
 // Macros
 #define led_dcprg_set()		PORTA|=(1<<PA0)
@@ -232,7 +233,14 @@ int main(void){
 					pc_send_cmd(PC_CMD_ACK, 2, resp);
 				}					
 				break;
+
+            case PC_CMD_NUM_BRDS:
+                resp[0] = pc_rx_buf[PC_CMD_POS];
+                resp[1] = num_brds;
+                pc_send_cmd(PC_CMD_ACK, 2, resp);
+                break;
 				
+            // Unknown Command
 			default:
 				break;
 		}
