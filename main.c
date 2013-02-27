@@ -252,11 +252,19 @@ int main(void){
 uint8_t find_num_brds(void){
     uint16_t byte_count = 0;
     uint8_t byte = 0; 
-
-    byte = led_txrx_byte(0xAA);
+    uint16_t i = 0;
 
     // Allow ~100 Board Limit (72*100)
-    while(1){
+    // Cleanse SPI Registers With 0xBB
+    for(i=0; i<7200; i++){
+        led_txrx_byte(0xBB);
+    }
+
+    // Send 0xAA
+    byte = led_txrx_byte(0xAA);
+
+    // Look For 0xAA
+    for(i=0; i<7200; i++){
         byte = led_txrx_byte(0x00);
         byte_count++;
 
