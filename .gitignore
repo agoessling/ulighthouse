@@ -1,3 +1,8 @@
+# AVR Files
+*.hex
+*.eep
+*.elf
+
 # Object files
 *.o
 
